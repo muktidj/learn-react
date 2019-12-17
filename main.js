@@ -29,23 +29,45 @@
 
 //Class ES 7
 
-class Human {
-  gender = "male";
+// class Human {
+//   gender = "male";
 
-  printGender = () => {
-    console.log(this.gender);
-  };
+//   printGender = () => {
+//     console.log(this.gender);
+//   };
+// }
+
+// class Person extends Human {
+//   name = "Mukti";
+//   gender = "Female";
+
+//   printMyName = () => {
+//     console.log(this.name);
+//   };
+// }
+
+// const person = new Person();
+// person.printMyName();
+// person.printGender();
+
+// Rest && Spread
+
+const array1 = [1,2,3,4]
+const array2 = [...array1, 5,6]
+console.log(array2);
+
+const person = {
+  name: 'Mukti'
 }
 
-class Person extends Human {
-  name = "Mukti";
-  gender = "Female";
-
-  printMyName = () => {
-    console.log(this.name);
-  };
+const personAge = {
+  ...person,
+  age: 122
 }
 
-const person = new Person();
-person.printMyName();
-person.printGender();
+console.log(personAge);
+
+const number = (...args) => {
+  return args.filter(num => num === 2)
+}
+console.log(number(1,2,3))
