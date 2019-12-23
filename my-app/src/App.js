@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Person from './Person/Person';
 
+
 class App extends Component {
 
 state = {
@@ -13,11 +14,16 @@ state = {
   ]
 }
 
+switchHandlerName = () => {
+  console.log('Saya diklik');
+
+}
+
   render() {
   return (
     <div className="App">
       <h1>Hi, I'am learn React</h1>
-      <button>Switch Name</button>
+      <button onClick={this.switchHandlerName}>Switch Name</button>
       <Person name={this.state.person[0].name} age={this.state.person[0].age} />
       <Person name={this.state.person[1].name} age={this.state.person[1].age}> My Hobbies: Reading </Person>
       <Person name={this.state.person[2].name} age={this.state.person[2].age}/>
