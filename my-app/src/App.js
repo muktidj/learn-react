@@ -16,8 +16,19 @@ state = {
 
 switchHandlerName = () => {
   console.log('Saya diklik');
+  //DON'T DO THIS this.state.person[0].name = 'Mukti'
 
+  this.setState({
+    person: [
+
+      {name:"Mukti", age:21},
+      {name:"Ayu Retno Mukti", age:22},
+      {name:"Imam Taufik", age:30}
+    ],
+    otherState: 'Some Other Value'
+  })
 }
+
 
   render() {
   return (
