@@ -44,11 +44,22 @@ switchHandlerName = (newName) => {
 
 
   render() {
+
+    const styleButton = {
+      backgroundColor : '#eee',
+      font : 'inherit',
+      padding : '8px',
+      border : '1px solid black',
+      cursor : 'pointer'
+    }
+
   return (
     <div className="App">
       <h1>Hi, I'am learn React</h1>
       {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
-      <button onClick={() => this.switchHandlerName('Mukti!!')}>Switch Name</button>
+      <button
+      style={styleButton}
+      onClick={() => this.switchHandlerName('Mukti!!')}>Switch Name</button>
       <Person name={this.state.person[0].name} age={this.state.person[0].age} />
       <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchHandlerName.bind(this, "DJ Mukti")}> My Hobbies: Reading </Person>
       <Person name={this.state.person[2].name} age={this.state.person[2].age} changed={this.nameChangeHandler}/>
