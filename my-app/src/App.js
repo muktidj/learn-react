@@ -25,7 +25,8 @@ switchHandlerName = (newName) => {
       {name:"Ayu Retno Mukti", age:22},
       {name:"Imam Taufik", age:30}
     ],
-    otherState: 'Some Other Value'
+    otherState: 'Some Other Value',
+    showPerson : 'false'
   })
 
 }
@@ -38,9 +39,12 @@ switchHandlerName = (newName) => {
           {name:event.target.value, age:21}
         ]
     })
-
-
   }
+  
+      togglePersonHandler = () => {
+        const doesShow = this.state.showPerson;
+        this.setState({showPerson: !doesShow});
+      }
 
 
   render() {
@@ -59,10 +63,16 @@ switchHandlerName = (newName) => {
       {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
       <button
       style={styleButton}
-      onClick={() => this.switchHandlerName('Mukti!!')}>Switch Name</button>
+      onClick={this.togglePersonHandler}>Toggle Person</button>
+      {
+        this.state.showPerson === true ?
+      <div>
       <Person name={this.state.person[0].name} age={this.state.person[0].age} />
       <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchHandlerName.bind(this, "DJ Mukti")}> My Hobbies: Reading </Person>
       <Person name={this.state.person[2].name} age={this.state.person[2].age} changed={this.nameChangeHandler}/>
+
+      </div> : null
+      }
 
     </div>
   );
