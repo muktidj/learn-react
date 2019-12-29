@@ -62,9 +62,12 @@ switchHandlerName = (newName) => {
     if (this.state.showPerson) {
       persons = (
         <div>
-        <Person name={this.state.person[0].name} age={this.state.person[0].age} />
-        <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchHandlerName.bind(this, "DJ Mukti")}> My Hobbies: Reading </Person>
-        <Person name={this.state.person[2].name} age={this.state.person[2].age} changed={this.nameChangeHandler}/>
+        {this.state.person.map(persons => {
+          return <Person
+                    name={persons.name}
+                    age={persons.age}
+                  />
+        })}
 
         </div>
 
