@@ -14,22 +14,7 @@ state = {
   ]
 }
 
-switchHandlerName = (newName) => {
-  console.log('Saya diklik');
-  //DON'T DO THIS this.state.person[0].name = 'Mukti'
 
-  this.setState({
-    person: [
-
-      {name:newName, age:21},
-      {name:"Ayu Retno Mukti", age:22},
-      {name:"Imam Taufik", age:30}
-    ],
-    otherState: 'Some Other Value',
-    showPerson : 'false'
-  })
-
-}
     nameChangeHandler = (event) => {
       this.setState({
         person: [
@@ -39,6 +24,12 @@ switchHandlerName = (newName) => {
           {name:event.target.value, age:21}
         ]
     })
+  }
+
+  deletePersonHandler = (personIndex) => {
+    const person = this.state.person
+    person.splice(personIndex, 1)
+    this.setState({person: person})
   }
 
       togglePersonHandler = () => {
@@ -62,8 +53,9 @@ switchHandlerName = (newName) => {
     if (this.state.showPerson) {
       persons = (
         <div>
-        {this.state.person.map(persons => {
+        {this.state.person.map((persons,index) => {
           return <Person
+                    click={() => this.deletePersonHandler(index)}
                     name={persons.name}
                     age={persons.age}
                   />
