@@ -40,7 +40,7 @@ switchHandlerName = (newName) => {
         ]
     })
   }
-  
+
       togglePersonHandler = () => {
         const doesShow = this.state.showPerson;
         this.setState({showPerson: !doesShow});
@@ -57,6 +57,21 @@ switchHandlerName = (newName) => {
       cursor : 'pointer'
     }
 
+    let persons = null
+
+    if (this.state.showPerson) {
+      persons = (
+        <div>
+        <Person name={this.state.person[0].name} age={this.state.person[0].age} />
+        <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchHandlerName.bind(this, "DJ Mukti")}> My Hobbies: Reading </Person>
+        <Person name={this.state.person[2].name} age={this.state.person[2].age} changed={this.nameChangeHandler}/>
+
+        </div>
+
+      )
+    }
+
+
   return (
     <div className="App">
       <h1>Hi, I'am learn React</h1>
@@ -64,15 +79,7 @@ switchHandlerName = (newName) => {
       <button
       style={styleButton}
       onClick={this.togglePersonHandler}>Toggle Person</button>
-      {
-        this.state.showPerson === true ?
-      <div>
-      <Person name={this.state.person[0].name} age={this.state.person[0].age} />
-      <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchHandlerName.bind(this, "DJ Mukti")}> My Hobbies: Reading </Person>
-      <Person name={this.state.person[2].name} age={this.state.person[2].age} changed={this.nameChangeHandler}/>
-
-      </div> : null
-      }
+      {persons}
 
     </div>
   );
