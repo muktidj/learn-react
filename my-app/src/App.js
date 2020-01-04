@@ -75,9 +75,19 @@ class App extends Component {
       styleButton.backgroundColor = 'red';
     }
 
+    //let classes = ['red', 'bold'].join(' ') //tidak dinamis
+    const classes = []
+    if(this.state.person.length <= 2) {
+      classes.push('red'); //['red']
+    }
+    if (this.state.person.length <=1) {
+      classes.push('bold'); //['red', 'bold']
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'am learn React</h1>
+        <p className={classes.join(' ')}>This is really working</p>
         {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
         <button style={styleButton} onClick={this.togglePersonHandler}>
           Toggle Person
