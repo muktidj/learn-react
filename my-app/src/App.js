@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Radium from "radium";
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -46,11 +47,15 @@ class App extends Component {
   render() {
     const styleButton = {
       backgroundColor: "green",
-      color: 'white',
+      color: "white",
       font: "inherit",
       padding: "8px",
       border: "1px solid black",
-      cursor: "pointer"
+      cursor: "pointer",
+      ':hover' : {
+        backgroundColor : 'lightgreen',
+        color : 'black'
+      }
     };
 
     let persons = null;
@@ -72,22 +77,26 @@ class App extends Component {
         </div>
       );
 
-      styleButton.backgroundColor = 'red';
+      styleButton.backgroundColor = "red";
+      styleButton[':hover'] = {
+        backgroundColor: 'salmon',
+        color : 'black'
+      }
     }
 
     //let classes = ['red', 'bold'].join(' ') //tidak dinamis
-    const classes = []
-    if(this.state.person.length <= 2) {
-      classes.push('red'); //['red']
+    const classes = [];
+    if (this.state.person.length <= 2) {
+      classes.push("red"); //['red']
     }
-    if (this.state.person.length <=1) {
-      classes.push('bold'); //['red', 'bold']
+    if (this.state.person.length <= 1) {
+      classes.push("bold"); //['red', 'bold']
     }
 
     return (
       <div className="App">
         <h1>Hi, I'am learn React</h1>
-        <p className={classes.join(' ')}>This is really working</p>
+        <p className={classes.join(" ")}>This is really working</p>
         {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
         <button style={styleButton} onClick={this.togglePersonHandler}>
           Toggle Person
@@ -100,4 +109,4 @@ class App extends Component {
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does is it Work ?'))
 }
 
-export default App;
+export default Radium(App);
