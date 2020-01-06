@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 //import './Person.css'
 
 const StyledDiv = styled.div`
@@ -10,14 +10,12 @@ const StyledDiv = styled.div`
   box-shadow: 0 2px 2px #ccc;
   padding: 16px;
 
-  @media (min-width:500px) {
-    width: '450px'
+  @media (min-width: 500px) {
+    width: 450px;
   }
-
-`
+`;
 
 const person = props => {
-
   return (
     <StyledDiv>
       <p onClick={props.click}>

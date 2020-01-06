@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
-import Radium, { StyleRoot } from "radium";
 import Person from "./Person/Person";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  padding: 8px;
+      border: 1px solid black;
+      cursor: pointer;
+      &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -45,19 +58,6 @@ class App extends Component {
   };
 
   render() {
-    const styleButton = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      padding: "8px",
-      border: "1px solid black",
-      cursor: "pointer",
-      ':hover' : {
-        backgroundColor : 'lightgreen',
-        color : 'black'
-      }
-    };
-
     let persons = null;
 
     if (this.state.showPerson) {
@@ -77,11 +77,11 @@ class App extends Component {
         </div>
       );
 
-      styleButton.backgroundColor = "red";
-      styleButton[':hover'] = {
-        backgroundColor: 'salmon',
-        color : 'black'
-      }
+      // styleButton.backgroundColor = "red";
+      // styleButton[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
     }
 
     //let classes = ['red', 'bold'].join(' ') //tidak dinamis
@@ -94,21 +94,19 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>Hi, I'am learn React</h1>
         <p className={classes.join(" ")}>This is really working</p>
         {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
-        <button style={styleButton} onClick={this.togglePersonHandler}>
+        <StyledButton alt={this.state.showPerson} onClick={this.togglePersonHandler}>
           Toggle Person
-        </button>
+        </StyledButton>
         {persons}
       </div>
-      </StyleRoot>
     );
   }
   // React Without JSX in Background
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does is it Work ?'))
 }
 
-export default Radium(App);
+export default App;
