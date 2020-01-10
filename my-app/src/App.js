@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import classes from './App.module.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
   state = {
     persons: [
-      { id: 'asfa1', name: 'Max', age: 28 },
-      { id: 'vasdf1', name: 'Manu', age: 29 },
-      { id: 'asdf11', name: 'Stephanie', age: 26 }
+      { id: 'love1', name: 'Mukti', age: 21 },
+      { id: 'love2', name: 'Ayu Retno', age: 21 },
+      { id: 'love3', name: 'Zulfa Dinda', age: 21 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -54,13 +55,15 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
+              <ErrorBoundary key={person.id}>
               <Person
                 click={() => this.deletePersonHandler(index)}
                 name={person.name}
                 age={person.age}
-                key={person.id}
+                // key={person.id}
                 changed={event => this.nameChangedHandler(event, person.id)}
               />
+              </ErrorBoundary>
             );
           })}
         </div>

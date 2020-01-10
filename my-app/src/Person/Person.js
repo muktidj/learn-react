@@ -3,6 +3,10 @@ import React from 'react';
 import classes from './Person.module.css';
 
 const person = props => {
+  const random = Math.random()
+  if(random > 0.6) {
+    throw new Error('Something went Error')
+  }
   return (
     <div className={classes.Person}>
       <p onClick={props.click}>
