@@ -1,112 +1,94 @@
-import React, { Component } from "react";
-import "./App.css";
-import Person from "./Person/Person";
-import styled from "styled-components";
+import React, { Component } from 'react';
 
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  padding: 8px;
-      border: 1px solid black;
-      cursor: pointer;
-      &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+import classes from './App.module.css';
+import Person from './Person/Person';
 
 class App extends Component {
   state = {
-    person: [
-      { id: "a1", name: "Mukti DJ", age: 21 },
-      { id: "a2", name: "Ayu Retno", age: 22 },
-      { id: "a3", name: "Imam Taufik", age: 21 },
+    persons: [
+      { id: 'asfa1', name: 'Max', age: 28 },
+      { id: 'vasdf1', name: 'Manu', age: 29 },
+      { id: 'asdf11', name: 'Stephanie', age: 26 }
     ],
+    otherState: 'some other value',
+    showPersons: false
   };
 
-  nameChangeHandler = (event, id) => {
-    const personIndex = this.state.person.findIndex(personID => {
-      return personID.id === id;
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
     });
 
     const person = {
-      ...this.state.person[personIndex],
-      // Memliki salinan tidak boleh langsung diubah
+      ...this.state.persons[personIndex]
     };
 
-    // const persons = Object.assign({}, this.state.person[personIndex]) *alternatif syntax
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+
     person.name = event.target.value;
 
-    const persons = [...this.state.person];
+    const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ person: persons });
+    this.setState({ persons: persons });
   };
 
   deletePersonHandler = personIndex => {
-    // const person = this.state.person.slice()
-
-    const person = [...this.state.person];
-    person.splice(personIndex, 1);
-    this.setState({ person: person });
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   };
 
-  togglePersonHandler = () => {
-    const doesShow = this.state.showPerson;
-    this.setState({ showPerson: !doesShow });
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow });
   };
 
   render() {
     let persons = null;
+    let btnClass = '';
 
-    if (this.state.showPerson) {
+    if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.person.map((persons, index) => {
+          {this.state.persons.map((person, index) => {
             return (
               <Person
                 click={() => this.deletePersonHandler(index)}
-                name={persons.name}
-                age={persons.age}
-                key={persons.id}
-                changed={event => this.nameChangeHandler(event, persons.id)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changed={event => this.nameChangedHandler(event, person.id)}
               />
             );
           })}
         </div>
       );
 
-      // styleButton.backgroundColor = "red";
-      // styleButton[":hover"] = {
-      //   backgroundColor: "salmon",
-      //   color: "black",
-      // };
+      btnClass = classes.Red;
     }
 
-    //let classes = ['red', 'bold'].join(' ') //tidak dinamis
-    const classes = [];
-    if (this.state.person.length <= 2) {
-      classes.push("red"); //['red']
+    const assignedClasses = [];
+    if (this.state.persons.length <= 2) {
+      assignedClasses.push(classes.red); // classes = ['red']
     }
-    if (this.state.person.length <= 1) {
-      classes.push("bold"); //['red', 'bold']
+    if (this.state.persons.length <= 1) {
+      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'am learn React</h1>
-        <p className={classes.join(" ")}>This is really working</p>
-        {/* <button onClick={this.switchHandlerName.bind(this, 'Mukti')}>Switch Name</button> */}
-        <StyledButton alt={this.state.showPerson} onClick={this.togglePersonHandler}>
-          Toggle Person
-        </StyledButton>
+      <div className={classes.App}>
+        <h1>Hi, I'm a React App</h1>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
+          Toggle Persons
+        </button>
         {persons}
       </div>
     );
+    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
-  // React Without JSX in Background
-  // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does is it Work ?'))
 }
 
 export default App;
